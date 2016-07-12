@@ -35,7 +35,26 @@ int card::getFaceValue() {
 	
 	int newFace;
 
-	newFace = stoi(face);
+	//do a check if the face value is J, Q, K, A
+
+	//if a real number
+	if (isdigit(face[0])) {
+		newFace = stoi(face);
+	}
+	//if not, compare the Face value to the letter for a value output
+	else if (face == "J") {
+		newFace = 11;
+	}
+	else if (face == "Q") {
+		newFace = 12;
+	}
+	else if (face == "K") {
+		newFace = 13;
+	}
+	else if (face == "A") {
+		newFace = 1;
+	}
+	
 
 	return newFace;
 }

@@ -1,4 +1,5 @@
 #include "DeckCards.h"
+#include <iostream>
 
 using namespace std;
 //prototype
@@ -10,24 +11,30 @@ int main(){
 	card currentCard;
 	//our added code to for human and ai
 	card humanHand, aiHand;
+	bool game = true;
+	int selection;
 
-	
-	//deck.printDeck();
-	deck.shuffle();
-	//cout << endl << endl;
-	//deck.printDeck();
-	deck.shuffle();
-	cout << endl << endl;
+	//start game loop
+	do {
 
-	for (int i = 0; i < 1; i++){
-		//currentCard = deck.dealCard();
+		deck.shuffle();
+		cout << endl << endl;
+
 		humanHand = deck.dealCard();
-		//cout << "Your Current hand is " << humanHand.print() << endl;
+		cout << "Your Current hand is " << humanHand.print() << endl;
 		aiHand = deck.dealCard();
-		//cout << "Your opponents hand is " << aiHand.print() << endl;
+		cout << "Your opponents hand is " << aiHand.print() << endl;
 
 		Result(humanHand, aiHand);
-	}
+		
+		cout << "Do You Want To Play Again?" << endl;
+		cout << "1 = yes, 0 = no" << endl;
+		cin >> selection;
+		if (selection != 1) {
+			game = false;
+		}
+	
+	} while (game);
 
 	system("PAUSE");
 	return 0;
@@ -37,6 +44,23 @@ int main(){
 //this method will compare the two hands dealt to the user and ai. 
 void Result(card humanHand, card aiHand) {
 
-	cout << humanHand.getFaceValue();
-	cout << aiHand.getFaceValue();
+	//local variable to comare face values
+	int human = humanHand.getFaceValue();
+	int ai = aiHand.getFaceValue();
+
+	if (human > ai) {
+
+		cout << "Player Wins!!!!" << endl;
+	}
+	else if (human < ai) {
+
+		cout << "Ai Wins!!!!" << endl;
+
+	}
+	else {
+
+		cout << "Tie Game but Ai Wins!!!!" << endl;
+
+	}
+
 }
