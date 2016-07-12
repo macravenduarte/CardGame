@@ -10,14 +10,14 @@ using namespace std;
 const int CARDS_PER_DECK = 52;
 
 class deckCards{
-private:
-	card *deck;
-	int currentCard;
-public:
-	deckCards();
-	void shuffle();
-	card dealCard();
-	void printDeck() const;
+	private:
+		card *deck;
+		int currentCard;
+	public:
+		deckCards();
+		void shuffle();
+		card dealCard();
+		void printDeck() const;
 };
 
 void deckCards::printDeck() const{
@@ -48,6 +48,7 @@ void deckCards::shuffle(){
 		deck[second] = temp;
 	}
 }
+
 card deckCards::dealCard(){
 	if (currentCard >= CARDS_PER_DECK){
 		shuffle();
