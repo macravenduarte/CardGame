@@ -3,7 +3,7 @@
 
 using namespace std;
 //prototype
-bool gameStart();
+void gameStart();
 void cardResult(card, card);
 bool getGameResult(bool);
 void addPlayerPoints();
@@ -14,10 +14,6 @@ int playerPoints = 0, aiPoints = 0;
 
 int main(){
 
-	//deckCards deck;
-	//card currentCard;
-	////our added code to for human and ai
-	//card humanHand, aiHand;
 	bool game = true;
 	int selection;
 
@@ -41,10 +37,11 @@ int main(){
 }
 
 //This method will run the game
-bool gameStart() {
+void gameStart() {
 	
 	deckCards deck;
 	card currentCard;
+
 	//our added code to for human and ai
 	card humanHand, aiHand;
 	bool winner = false;
@@ -61,9 +58,10 @@ bool gameStart() {
 		cout << "Your opponents hand is " << aiHand.print() << endl;
 
 		cardResult(humanHand, aiHand);	//check who has the winning hand
-		getGameResult(winner);	//check to see who has the most points, best 2 out of 3
-
+		winner = getGameResult(winner);	//check to see who has the most points, best 2 out of 3
+		
 	} while(!getGameResult(winner));
+
 }
 
 //this method will compare the two hands dealt to the user and ai. 
