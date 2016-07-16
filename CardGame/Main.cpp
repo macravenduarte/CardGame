@@ -19,7 +19,9 @@ int main(){
 
 	//start game loop
 	do {
-		
+		playerPoints = 0;
+		aiPoints = 0;
+
 		gameStart();
 
 		cout << "Do You Want To Play Again?" << endl;
@@ -60,7 +62,7 @@ void gameStart() {
 		cardResult(humanHand, aiHand);	//check who has the winning hand
 		winner = getGameResult(winner);	//check to see who has the most points, best 2 out of 3
 		
-	} while(!getGameResult(winner));
+	} while(!winner);
 
 }
 
@@ -94,19 +96,20 @@ bool getGameResult(bool winner) {
 
 	bool result = false; 
 
-	if (playerPoints = 2) {
+	if (playerPoints == 2) {
 		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
-		cout << "Player Wins!!!!" << endl;
+		cout << "Player Wins!!" << endl;
 		result = true;
 		playerPoints = 0;
 	}
-	else if (aiPoints = 2) {
+	else if (aiPoints == 2) {
 		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
-		cout << "Ai Wins!!!!" << endl;
+		cout << "Ai Wins!!" << endl;
 		result = true;
 		aiPoints = 0;
 	}
 	else {
+
 		result = false;
 	}
 
