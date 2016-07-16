@@ -10,7 +10,7 @@ void addPlayerPoints();
 void addAiPoints();
 int getPlayerPoints();
 int getAiPoints();
-int playerPoints = 0, aiPoints = 0;
+int playerPoints, aiPoints;
 
 int main(){
 
@@ -50,12 +50,13 @@ void gameStart() {
 	
 	//run a loop that will continue the game 
 	do {
+
 		deck.shuffle();
 		cout << endl << endl;
-
+		//deal to the player
 		humanHand = deck.dealCard();
 		cout << "Your Current hand is " << humanHand.print() << endl;
-		
+		//deal to the ai
 		aiHand = deck.dealCard();
 		cout << "Your opponents hand is " << aiHand.print() << endl;
 
@@ -72,21 +73,27 @@ void cardResult(card humanHand, card aiHand) {
 	//local variable to comare face values
 	int human = humanHand.getFaceValue(), ai = aiHand.getFaceValue();
 
+	//checks if the player scored a point
 	if (human > ai) {
 		addPlayerPoints();
 		cout << "Player Scores a Point!!!!" << endl;
 		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
+		system("PAUSE");
 	}
+	//checks if the ai scored a point
 	else if (human < ai) {
 		addAiPoints();
 		cout << "Ai Scores a Point!!!!" << endl;
 		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
+		system("PAUSE");
 	}
+	//tie and no points awarded
 	else {
 		cout << "Tie no points awarded!!!!" << endl;
 		cout << "The score is:" << endl;
 		cout << "Player: " << getPlayerPoints() << " point(s)." << endl;
 		cout << "Ai: " << getAiPoints() << " point(s)." << endl;
+		system("PAUSE");
 	}
 
 }
@@ -96,20 +103,24 @@ bool getGameResult(bool winner) {
 
 	bool result = false; 
 
+	//checks if the player won
 	if (playerPoints == 2) {
 		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
 		cout << "Player Wins!!" << endl;
 		result = true;
 		playerPoints = 0;
+		system("PAUSE");
 	}
+	//checks if the ai won
 	else if (aiPoints == 2) {
 		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
 		cout << "Ai Wins!!" << endl;
 		result = true;
 		aiPoints = 0;
+		system("PAUSE");
 	}
+	//continue the game
 	else {
-
 		result = false;
 	}
 
