@@ -75,12 +75,12 @@ void cardResult(card humanHand, card aiHand) {
 	if (human > ai) {
 		addPlayerPoints();
 		cout << "Player Scores a Point!!!!" << endl;
-		cout << "Player has " << getPlayerPoints() << "point(s)." << endl;
+		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
 	}
 	else if (human < ai) {
 		addAiPoints();
 		cout << "Ai Scores a Point!!!!" << endl;
-		cout << "Ai has " << getAiPoints() << "point(s)." << endl;
+		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
 	}
 	else {
 		cout << "Tie no points awarded!!!!" << endl;
