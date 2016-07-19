@@ -6,6 +6,7 @@ using namespace std;
 void gameStart();
 void cardResult(card, card);
 bool getGameResult(bool);
+bool playAgain(string);
 void addPlayerPoints();
 void addAiPoints();
 int getPlayerPoints();
@@ -15,7 +16,8 @@ int playerPoints, aiPoints;
 int main(){
 
 	bool game = true;
-	int selection;
+
+	string selection;
 
 	//start game loop
 	do {
@@ -24,10 +26,15 @@ int main(){
 
 		gameStart();
 
-		cout << "Do You Want To Play Again?" << endl;
-		cout << "1 = yes, 0 = no" << endl;
-		cin >> selection;
-		if (selection != 1) {
+		do
+		{ 
+			cout << "Do You Want To Play Again?" << endl;
+			cout << "1 = yes, 0 = no" << endl;
+			cin >> selection;	
+
+		} while (playAgain(selection) == false);
+
+		if (selection == "0") {
 			game = false;
 		}
 	
@@ -78,6 +85,7 @@ void cardResult(card humanHand, card aiHand) {
 		addPlayerPoints();
 		cout << "Player Scores a Point!!!!" << endl;
 		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
+		cout << "Ai: " << getAiPoints() << " point(s)." << endl;
 		system("PAUSE");
 	}
 	//checks if the ai scored a point
@@ -85,6 +93,7 @@ void cardResult(card humanHand, card aiHand) {
 		addAiPoints();
 		cout << "Ai Scores a Point!!!!" << endl;
 		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
+		cout << "Player: " << getPlayerPoints() << " point(s)." << endl;
 		system("PAUSE");
 	}
 	//tie and no points awarded
@@ -98,13 +107,13 @@ void cardResult(card humanHand, card aiHand) {
 
 }
 
-//This method will get the game result
+//This method will get the game result(you are able to change the number of points needed to win)
 bool getGameResult(bool winner) {
-
+	int const POINTS_TO_WIN = 10;
 	bool result = false; 
 
 	//checks if the player won
-	if (playerPoints == 2) {
+	if (playerPoints == POINTS_TO_WIN) {
 		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
 		cout << "Player Wins!!" << endl;
 		result = true;
@@ -112,7 +121,7 @@ bool getGameResult(bool winner) {
 		system("PAUSE");
 	}
 	//checks if the ai won
-	else if (aiPoints == 2) {
+	else if (aiPoints == POINTS_TO_WIN) {
 		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
 		cout << "Ai Wins!!" << endl;
 		result = true;
@@ -127,6 +136,23 @@ bool getGameResult(bool winner) {
 	winner = result;
 
 	return winner;
+}
+
+bool playAgain(string selection)
+{
+	if (selection.size() > 1)
+	{
+		return false;
+	}
+	else if (isdigit(selection[0]))
+	{
+		if (selection[0] == '1' || selection[0] == '0')
+			return true;
+		else
+			return false;
+	}
+	else
+		return false;
 }
 
 //This method adds a point for the Player
