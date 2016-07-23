@@ -98,13 +98,14 @@ void cardResult(card humanHand, card aiHand) {
 
 }
 
-//This method will get the game result
+//This method will get the game result and set the point limit to win
 bool getGameResult(bool winner) {
 
+	int const POINTSTOWIN = 10;
 	bool result = false; 
 
 	//checks if the player won
-	if (playerPoints == 2) {
+	if (playerPoints == POINTSTOWIN) {
 		cout << "Player has " << getPlayerPoints() << " point(s)." << endl;
 		cout << "Player Wins!!" << endl;
 		result = true;
@@ -112,7 +113,7 @@ bool getGameResult(bool winner) {
 		system("PAUSE");
 	}
 	//checks if the ai won
-	else if (aiPoints == 2) {
+	else if (aiPoints == POINTSTOWIN) {
 		cout << "Ai has " << getAiPoints() << " point(s)." << endl;
 		cout << "Ai Wins!!" << endl;
 		result = true;
